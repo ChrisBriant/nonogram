@@ -5,6 +5,7 @@ import BottomPanel from "./components/BottomPanel";
 import SidePanel from "./components/SidePanel";
 import AreYouSure from "./components/AreYouSure";
 import LoadingSpinner from './components/LoadingSpinner';
+import RulesDialog from "./components/RulesDialog";
 
 
 
@@ -20,6 +21,7 @@ const Main = () => {
             {
                 loading ? <LoadingSpinner /> : null
             }
+            <RulesDialog />
             <AreYouSure />
             <MainDisplay />
             <SidePanel />

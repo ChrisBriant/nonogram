@@ -193,6 +193,12 @@ button:hover {
     color: var(--text-color-dark);
   }
 
+  .modalBg .modal.rulesModal {
+    color: var(--text-color-dark);
+    width: 80%;
+    height: 80%;
+  }
+
   .modalBg .modal .buttonBar {
     display: inline-flex;
     flex-direction: row;

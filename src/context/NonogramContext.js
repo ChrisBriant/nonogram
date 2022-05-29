@@ -16,6 +16,7 @@ const defaultState = {
   },
   scored : false,
   showModal : false,
+  showRules : true,
   loading: false,
   results : {},
   noWordsMessage : '',
@@ -32,6 +33,8 @@ const nonogramReducer = (state,action) => {
         return {...state,words:newWords};
     case 'setShowModal':
         return {...state,showModal:action.payload};
+    case 'setShowRules':
+        return {...state,showRules:action.payload};
     case 'setLoading':
         return {...state,loading:action.payload};
     case 'getResults':
@@ -79,6 +82,10 @@ const setNoWordsMessage = (dispatch) => async (message) => {
     dispatch({type:'setNoWordsMessage', payload: message});
 }
 
+const setShowRules = (dispatch) => async (show) => {
+    dispatch({type:'setShowRules', payload: show});
+}
+
 const getResults = (dispatch) => async (payload) => {
     await fetch(`${BASE_URL}/api/scoreword/`, 
     {
@@ -101,6 +108,6 @@ const getResults = (dispatch) => async (payload) => {
 
 export const {Provider, Context} = createDataContext (
   nonogramReducer,
-  { setNonogram, setWordMatches, setShowModal, setLoading, getResults, setNoWordsMessage },
+  { setNonogram, setWordMatches, setShowModal, setLoading, getResults, setNoWordsMessage, setShowRules },
   {...defaultState}
 );

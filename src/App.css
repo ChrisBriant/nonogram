@@ -9,6 +9,7 @@
   --bg-color-bottom: #095246;
   --button-color: #4c008a;
   --button-color-hover: #823abd;
+  --highlighted-color : #ecab1d;
 }
 
 * {
@@ -155,6 +156,11 @@ button:hover {
  #sidePanel .scoreButtonContainer {
   width: 100%; 
   display: flex;
+ }
+
+ .specialHighlight {
+   color: var(--highlighted-color);
+  font-size: larger;
  }
 
   /* modal  */

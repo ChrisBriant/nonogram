@@ -57,7 +57,7 @@ const BottomPanel = () => {
 
     return (
         <div id="bottomPanel">
-            <h2>Enter words below seperated by spaces: </h2>
+            <h3>Enter words below seperated by spaces: </h3>
             <textarea onKeyDown={handleKeyPressed}></textarea>
         </div>
     )

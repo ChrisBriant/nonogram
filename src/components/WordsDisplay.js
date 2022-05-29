@@ -2,8 +2,12 @@ import {useContext} from 'react';
 import {Context as NonogramContext} from '../context/NonogramContext';
 
 const WordsDisplay = () => {
-    const {state:{words,nonogram}} = useContext(NonogramContext);
+    const {setShowModal,state:{words,nonogram}} = useContext(NonogramContext);
     console.log('NONO', nonogram);
+
+    const confirmAction = () => {
+        setShowModal(true);
+    }
 
     return (
         <>
@@ -103,7 +107,7 @@ const WordsDisplay = () => {
                 }
             </div>
             <div className="scoreButtonContainer">
-                <button>Score</button>
+                <button onClick={confirmAction}>Score</button>
             </div>
         </>
     )

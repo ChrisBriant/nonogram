@@ -15,6 +15,8 @@ const defaultState = {
     '9Letter' : [],
   },
   scored : false,
+  showModal : false,
+  loading: false,
 };
 
 const nonogramReducer = (state,action) => {
@@ -29,6 +31,10 @@ const nonogramReducer = (state,action) => {
         //console.log('Unique matches', uniqueMatches);
         newWords[`${action.payload.letterCount}Letter`] = uniqueMatches;
         return {...state,words:newWords};
+    case 'setShowModal':
+        return {...state,showModal:action.payload};
+    case 'setLoading':
+        return {...state,loading:action.payload};
     // case 'getCats':
     //   return {...state,cats:action.payload};
     // case 'setMonth':
@@ -109,6 +115,15 @@ const setNonogram = (dispatch) => async (data) => {
 const setWordMatches = (dispatch) => async (matches,letterCount) => {
     dispatch({type:'setWordMatches', payload: {matches,letterCount}});
 }
+
+const setShowModal = (dispatch) => async (show) => {
+    dispatch({type:'setShowModal', payload: show});
+}
+
+const setLoading = (dispatch) => async (loading) => {
+    dispatch({type:'setLoading', payload: loading});
+}
+
 
 
 // const getCats = (dispatch) => async () => {
@@ -266,6 +281,6 @@ const setWordMatches = (dispatch) => async (matches,letterCount) => {
 
 export const {Provider, Context} = createDataContext (
   nonogramReducer,
-  { setNonogram, setWordMatches },
+  { setNonogram, setWordMatches, setShowModal, setLoading },
   {...defaultState}
 );

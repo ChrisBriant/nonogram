@@ -5,7 +5,6 @@ import ResultsDisplay from './ResultsDisplay';
 
 const SidePanel = () => {
     const {state:{scored}} = useContext(NonogramContext);
-    console.log('SCORED', scored);
 
     return (
         <div id="sidePanel">

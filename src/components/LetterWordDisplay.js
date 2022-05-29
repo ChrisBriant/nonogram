@@ -12,8 +12,6 @@ const LetterWordDisplay = (props) => {
         });
         return formattedWord + ' ';
     }
-    console.log('word list', props.wordList, props.letterCount, props.specialLetter);
-    //wordWithSpecial(props.wordList[0])
 
     return(
         <div>

@@ -4,17 +4,12 @@ import {Context as NonogramContext} from '../context/NonogramContext';
 
 const AreYouSure = () => {
     const {setShowModal,setLoading,getResults,state:{showModal,nonogram,words}} = useContext(NonogramContext);
-    //const [loading,setLoading] = useState(false);
-
-    console.log('Do i show the modal', showModal);
 
     const cancelAction = () => {
-        console.log('I am cancelling');
         setShowModal(false);
     }
 
     const scoreAction = () => {
-        console.log('Scoring will happen');
         let payload = {
             id : nonogram.id,
             word_list : [
@@ -29,7 +24,6 @@ const AreYouSure = () => {
             special : nonogram.word[4],
             word : nonogram.word,
         }
-        console.log('SENDING',payload);
         setShowModal(false);
         setLoading(true);
         getResults(payload);

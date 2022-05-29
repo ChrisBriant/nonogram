@@ -15,8 +15,6 @@ const Main = () => {
         setNonogram()
     },[]);
 
-    console.log('AM I LOADING', loading);
-
     return(
         <div className="mainLayout">
             {

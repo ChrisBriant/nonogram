@@ -3,7 +3,6 @@ import {Context as NonogramContext} from '../context/NonogramContext';
 
 const WordsDisplay = () => {
     const {setShowModal,state:{words,nonogram}} = useContext(NonogramContext);
-    console.log('NONO', nonogram);
 
     const confirmAction = () => {
         setShowModal(true);

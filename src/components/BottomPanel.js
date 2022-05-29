@@ -1,16 +1,20 @@
-import {useState, useContext} from 'react';
+import {useContext} from 'react';
 import {Context as NonogramContext} from '../context/NonogramContext';
 let timer;
 
 const BottomPanel = () => {
-    const [wordList, setWordList] = useState('');
-    const {setWordMatches,state:{nonogram}} = useContext(NonogramContext);
+    const {setWordMatches,setNoWordsMessage,state:{nonogram,noWordsMessage}} = useContext(NonogramContext);
 
     const scanText = (text,letterCount) => {
         let regEx =  new RegExp(`\\b\\w{${letterCount}}\\b`,'gm');
         let validWords = [];
         let matchedWords = text.match(regEx);
 
+        //Clear errors
+        if(noWordsMessage !== '') {
+            setNoWordsMessage('');
+        }
+        
         if(matchedWords) {
             matchedWords.forEach(word => {
                 let validWord = true;
@@ -34,7 +38,6 @@ const BottomPanel = () => {
     }
 
     const handleKeyPressed = (e) => {
-        setWordList(e.target.value);
         if(timer) {
             clearTimeout(timer);
         }

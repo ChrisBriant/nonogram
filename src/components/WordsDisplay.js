@@ -1,11 +1,26 @@
-import {useContext} from 'react';
+import {useContext,useState} from 'react';
 import {Context as NonogramContext} from '../context/NonogramContext';
 
 const WordsDisplay = () => {
-    const {setShowModal,state:{words,nonogram}} = useContext(NonogramContext);
+    const {setShowModal,setNoWordsMessage,state:{words,noWordsMessage}} = useContext(NonogramContext);
+    //const [noWordsMessage,setNoWordsMessage] = useState('');
 
     const confirmAction = () => {
-        setShowModal(true);
+        let wordList = [
+            ...words['3Letter'],
+            ...words['4Letter'],
+            ...words['5Letter'],
+            ...words['6Letter'],
+            ...words['7Letter'],
+            ...words['8Letter'],
+            ...words['9Letter'],
+        ];
+        if(wordList.length > 0) {
+            setShowModal(true);
+        } else {
+            setNoWordsMessage('You need to enter at least one word!');
+        }
+        
     }
 
     return (
@@ -13,6 +28,7 @@ const WordsDisplay = () => {
             <h3 className="centerText">Your Words</h3>
             <div className="gap10"></div>
             <div className="resultsContainer">
+                { noWordsMessage !== '' ? <p>{noWordsMessage}</p> : null }
                 {
                     words['3Letter'].length > 0 
                     ? <div>

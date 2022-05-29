@@ -18,12 +18,13 @@ const defaultState = {
   showModal : false,
   loading: false,
   results : {},
+  noWordsMessage : '',
 };
 
 const nonogramReducer = (state,action) => {
   switch(action.type) {
     case 'setNonogram':
-        return {...state,nonogram:action.payload,special:action.payload.word[4]};
+        return {...state,nonogram:action.payload};
     case 'setWordMatches':
         let newWords = {...state.words};
         let uniqueMatches = action.payload.matches.filter((v, i, a) => a.indexOf(v) === i);
@@ -35,13 +36,14 @@ const nonogramReducer = (state,action) => {
         return {...state,loading:action.payload};
     case 'getResults':
         return {...state,results:action.payload,scored:true,loading:false};
+    case 'setNoWordsMessage':
+        return {...state,noWordsMessage:action.payload};
     default:
       return defaultState;
   }
 };
 
-const setNonogram = (dispatch) => async (data) => {
-
+const setNonogram = (dispatch) => async () => {
     await fetch(`${BASE_URL}/api/getnonogram`, 
     {
         method: "GET",
@@ -73,6 +75,10 @@ const setLoading = (dispatch) => async (loading) => {
     dispatch({type:'setLoading', payload: loading});
 }
 
+const setNoWordsMessage = (dispatch) => async (message) => {
+    dispatch({type:'setNoWordsMessage', payload: message});
+}
+
 const getResults = (dispatch) => async (payload) => {
     await fetch(`${BASE_URL}/api/scoreword/`, 
     {
@@ -95,6 +101,6 @@ const getResults = (dispatch) => async (payload) => {
 
 export const {Provider, Context} = createDataContext (
   nonogramReducer,
-  { setNonogram, setWordMatches, setShowModal, setLoading, getResults },
+  { setNonogram, setWordMatches, setShowModal, setLoading, getResults, setNoWordsMessage },
   {...defaultState}
 );

@@ -1,17 +1,13 @@
 import {useContext} from 'react';
 import {Context as NonogramContext} from '../context/NonogramContext';
-import WordsDisplay from './WordsDisplay';
-import ResultsDisplay from './ResultsDisplay';
 
-const SidePanel = () => {
-    const {state:{scored}} = useContext(NonogramContext);
-    console.log('SCORED', scored);
+const WordsDisplay = () => {
+    const {state:{words,nonogram}} = useContext(NonogramContext);
+    console.log('NONO', nonogram);
 
     return (
-        <div id="sidePanel">
-            {
-                scored ? <ResultsDisplay /> : <WordsDisplay />
-            /* <h3 className="centerText">Your Words</h3>
+        <>
+            <h3 className="centerText">Your Words</h3>
             <div className="gap10"></div>
             <div className="resultsContainer">
                 {
@@ -108,9 +104,9 @@ const SidePanel = () => {
             </div>
             <div className="scoreButtonContainer">
                 <button>Score</button>
-            </div> */}
-        </div>
+            </div>
+        </>
     )
 }
 
-export default SidePanel;
+export default WordsDisplay;

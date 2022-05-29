@@ -13,7 +13,8 @@ const defaultState = {
     '7Letter' : [],
     '8Letter' : [],
     '9Letter' : [],
-  }
+  },
+  scored : false,
 };
 
 const nonogramReducer = (state,action) => {

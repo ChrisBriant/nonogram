@@ -25,7 +25,7 @@ const nonogramReducer = (state,action) => {
         let newWords = {...state.words};
         //let matches = action.payload.matches
         let uniqueMatches = action.payload.matches.filter((v, i, a) => a.indexOf(v) === i);
-        console.log('Unique matches', uniqueMatches);
+        //console.log('Unique matches', uniqueMatches);
         newWords[`${action.payload.letterCount}Letter`] = uniqueMatches;
         return {...state,words:newWords};
     // case 'getCats':

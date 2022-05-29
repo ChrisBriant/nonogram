@@ -6,8 +6,8 @@ const MainDisplay = () => {
 
     return (
         <div id="mainDisplay">
+            <h1 className="centerText">Nonogram</h1>
             <div className="mainDisplayTextContainer">
-                <h1 className="centerText">Nonogram</h1>
                 <p className="centerText"><strong>Find as many word combinations as possible from the letters below!</strong></p>
                 <p>Rules:</p>
             </div>

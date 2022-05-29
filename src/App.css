@@ -4,9 +4,11 @@
   --border-color : #363636;
   --special-color : #4c008a;
   --text-color-dark : #111111;
-  --bg-color-main: #c7b279;
-  --bg-color-side: #4c008a;
-  --bg-color-bottom: #523b09;
+  --bg-color-main: #c8d9e4;
+  --bg-color-side: #091052;
+  --bg-color-bottom: #095246;
+  --button-color: #4c008a;
+  --button-color-hover: #823abd;
 }
 
 * {
@@ -33,6 +35,22 @@ textarea {
   padding: 10px;
 }
 
+button {
+  border: 0;
+  font-size: 1rem;
+  border-radius: 6px;
+  padding: 6px;
+  color: var(--text-color);
+  margin: auto;
+  background-color: var(--button-color);
+}
+
+
+button:hover {
+  background-color: var(--button-color-hover);
+  cursor: pointer;
+}
+
 /* layout components  */
 
  .mainLayout {
@@ -56,6 +74,10 @@ textarea {
   background-color: var(--bg-color-side);;
   grid-row: 1 / span 2;
   height: 100vh;
+ }
+
+ .gap10 {
+   height: 10px;
  }
 
 
@@ -120,4 +142,18 @@ textarea {
  /* bottom panel  */
  #bottomPanel {
    padding: 10px;
+ }
+
+ /* side panel  */
+ #sidePanel  .resultsContainer{
+   padding: 10px;
+   height: 70vh;
+   background-color: var(--bg-color-side);
+   overflow: auto;
+   margin : 10px;
+ }
+
+ #sidePanel .scoreButtonContainer {
+  width: 100%; 
+  display: flex;
  }

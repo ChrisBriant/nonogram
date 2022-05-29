@@ -4,6 +4,9 @@
   --border-color : #363636;
   --special-color : #4c008a;
   --text-color-dark : #111111;
+  --bg-color-main: #c7b279;
+  --bg-color-side: #4c008a;
+  --bg-color-bottom: #523b09;
 }
 
 * {
@@ -38,19 +41,19 @@ textarea {
  }
 
  #mainDisplay {
-  background-color: bisque;
+  background-color: var(--bg-color-main);
   grid-row: 1;
   height: 70vh;
  }
 
  #bottomPanel {
-  background-color: aqua;
+  background-color: var(--bg-color-bottom);
   grid-row: 2;
   height: 30vh;
  }
 
  #sidePanel {
-  background-color: blueviolet;
+  background-color: var(--bg-color-side);;
   grid-row: 1 / span 2;
   height: 100vh;
  }

@@ -5,6 +5,15 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 const defaultState = {
   nonogram: {word:''},
+  words : {
+    '3Letter' : [],
+    '4Letter' : [],
+    '5Letter' : [],
+    '6Letter' : [],
+    '7Letter' : [],
+    '8Letter' : [],
+    '9Letter' : [],
+  }
 };
 
 const nonogramReducer = (state,action) => {
@@ -12,6 +21,13 @@ const nonogramReducer = (state,action) => {
   switch(action.type) {
     case 'setNonogram':
         return {...state,nonogram:action.payload,special:action.payload.word[4]};
+    case 'setWordMatches':
+        let newWords = {...state.words};
+        //let matches = action.payload.matches
+        let uniqueMatches = action.payload.matches.filter((v, i, a) => a.indexOf(v) === i);
+        console.log('Unique matches', uniqueMatches);
+        newWords[`${action.payload.letterCount}Letter`] = uniqueMatches;
+        return {...state,words:newWords};
     // case 'getCats':
     //   return {...state,cats:action.payload};
     // case 'setMonth':
@@ -87,6 +103,12 @@ const setNonogram = (dispatch) => async (data) => {
     //console.log('Reducer data', data);
     //dispatch({type:'setNonogram', payload: data});
 }
+
+
+const setWordMatches = (dispatch) => async (matches,letterCount) => {
+    dispatch({type:'setWordMatches', payload: {matches,letterCount}});
+}
+
 
 // const getCats = (dispatch) => async () => {
 //   try {
@@ -243,6 +265,6 @@ const setNonogram = (dispatch) => async (data) => {
 
 export const {Provider, Context} = createDataContext (
   nonogramReducer,
-  { setNonogram },
+  { setNonogram, setWordMatches },
   {...defaultState}
 );

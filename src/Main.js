@@ -1,9 +1,9 @@
 import { useEffect, useContext } from "react";
-//import { getNonogram } from "./network/api";
 import {Context as NonogramContext} from './context/NonogramContext';
 import MainDisplay from "./components/MainDisplay";
 import BottomPanel from "./components/BottomPanel";
 import SidePanel from "./components/SidePanel";
+import AreYouSure from "./components/AreYouSure";
 
 
 
@@ -11,17 +11,12 @@ const Main = () => {
     const {setNonogram,state:{nonogramData} } = useContext(NonogramContext);
 
     useEffect(() => {
-        //const nonogramData = 
         setNonogram()
-        // .then((nonogramData) => {
-        //     console.log('Nonogram data',nonogramData);
-        //     setNonogram(nonogramData);
-        // });
-
     },[]);
 
     return(
         <div className="mainLayout">
+            <AreYouSure message="Are you sure?"/>
             <MainDisplay />
             <SidePanel />
             <BottomPanel />

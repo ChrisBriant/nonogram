@@ -17,6 +17,7 @@ const defaultState = {
   scored : false,
   showModal : false,
   loading: false,
+  results : {},
 };
 
 const nonogramReducer = (state,action) => {
@@ -35,6 +36,8 @@ const nonogramReducer = (state,action) => {
         return {...state,showModal:action.payload};
     case 'setLoading':
         return {...state,loading:action.payload};
+    case 'getResults':
+        return {...state,results:action.payload,scored:true,loading:false};
     // case 'getCats':
     //   return {...state,cats:action.payload};
     // case 'setMonth':
@@ -122,6 +125,30 @@ const setShowModal = (dispatch) => async (show) => {
 
 const setLoading = (dispatch) => async (loading) => {
     dispatch({type:'setLoading', payload: loading});
+}
+
+const getResults = (dispatch) => async (payload) => {
+
+    await fetch(`${BASE_URL}/api/scoreword/`, 
+    {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 
+            "Content-Type": "application/json",
+            'Authorization' : API_KEY,
+        },
+        body: JSON.stringify(payload), 
+    }).then(res => {
+        return res.json();
+    }).then(data => {
+        dispatch({type:'getResults', payload: data});
+    })
+    .catch(err => {
+        console.log(err);
+        //return null;
+    });
+    //console.log('Reducer data', data);
+    //dispatch({type:'setNonogram', payload: data});
 }
 
 
@@ -281,6 +308,6 @@ const setLoading = (dispatch) => async (loading) => {
 
 export const {Provider, Context} = createDataContext (
   nonogramReducer,
-  { setNonogram, setWordMatches, setShowModal, setLoading },
+  { setNonogram, setWordMatches, setShowModal, setLoading, getResults },
   {...defaultState}
 );

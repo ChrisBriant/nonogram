@@ -16,7 +16,7 @@ const defaultState = {
   },
   scored : false,
   showModal : false,
-  showRules : true,
+  showRules : false,
   loading: false,
   results : {},
   noWordsMessage : '',
